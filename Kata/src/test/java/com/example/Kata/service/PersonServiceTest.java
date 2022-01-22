@@ -1,20 +1,34 @@
 package com.example.Kata.service;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import com.example.Kata.dto.Person;
+import com.example.Kata.dto.PersonData;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
+import org.junit.Ignore;
+import org.junit.jupiter.api.Test;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.runner.RunWith;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+import static org.mockito.Mockito.mock;
+
+@RunWith(MockitoJUnitRunner.class)
 public class PersonServiceTest {
 
-    @Autowired
-    private PersonService personService;
+    private PersonService personService = mock(PersonService.class);
 
     @Test
-    void splitPersonData() {
+    @Ignore
+    public void splitPersonData() throws IOException {
+        PersonData personData = new ObjectMapper().readValue(loadFileAsString("personsData.json"), PersonData.class);
+        List<List<Person>> result = personService.splitPersonData(personData);
+        assertEquals(result.size(), 6);
     }
 
     @Test
@@ -31,6 +45,12 @@ public class PersonServiceTest {
 
     @Test
     void savePersonDataInFile() {
+    }
+
+    private static String loadFileAsString(String fileName) throws IOException {
+        ClassLoader classLoader = new PersonServiceTest().getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
     }
 
 }

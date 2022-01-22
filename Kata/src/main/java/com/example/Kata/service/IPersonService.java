@@ -16,6 +16,8 @@ public interface IPersonService {
 
     void savePersonDataInDatabase(List<Person> persons);
 
-    void savePersonDataInFile(List<Person> persons,String path) throws IOException;
+    void savePersonDataInFile(List<Person> persons, String path) throws IOException;
+
+    List<Person> getAllPersonsInDatabase();
 
 }

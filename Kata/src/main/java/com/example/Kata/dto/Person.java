@@ -5,23 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table
+@Table(name = "PERSON")
 public class Person {
 
     @NotEmpty(message = "L'attribut FirstName est obligatoire")
     @JsonProperty("FirstName")
-    @Column
+    @Column(name = "FIRSTNAME")
     @Id
     private String firstName;
     @NotEmpty(message = "L'attribut LastName est obligatoire")
     @JsonProperty("LastName")
-    @Column
+    @Column(name = "LASTNAME")
     private String lastName;
     @JsonProperty("Age")
-    @Column
+    @Column(name = "AGE")
     private int age;
 
     public Person() {
