@@ -12,3 +12,14 @@ a. Filtrer la liste des Person lorsque Age > 40. b. Sauvegarder la liste dans la
 
 Un ensemble de tests unitaires pour tester le service développé.
 Exemple du body de la requête : { "Persons": [ { "FirstName": "P1", "LastName": "P2", "Age": 10 }, { "FirstName": "P1", "LastName": "P2", "Age": 10 } ], "SubListSize": 2 }
+
+# Remarques Yassin
+
+Les services web sont disponibles avec l'url : http://localhost:8080
+
+La base de données a été configuré avec les paramétres dans le fichier : application.properties
+
+Le chemin paramétrable pour le fichier de text est alimenté avec le champ "path_file" dans le fichier : application.properties
+
+Le fichier personsData.json est un exemple du body de requête pour les tests unitaires.
+
